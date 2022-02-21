@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <title>Popcash</title>
+    <style>
+      iframe {
+        max-width: 100%;
+        overflow: hidden;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="app"
+      style="
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+      "
+    >
+    <script type="text/javascript">
+        var uid = '308414';
+        var wid = '607018';
+        var pop_tag = document.createElement('script');pop_tag.src='//cdn.popcash.net/show.js';document.body.appendChild(pop_tag);
+        pop_tag.onerror = function() {pop_tag = document.createElement('script');pop_tag.src='//cdn2.popcash.net/show.js';document.body.appendChild(pop_tag)};
+     </script>
+    
+  </div>
+
+    <script>
+      var tags = document.querySelector('#app')
+      function showIframe() {
+        return `
+        <div>
+        <h1>apa </h1>
+        </div>
+          `
+      }
+
+      for (var i = 0, max = 20; i < max; i++) {
+        tags.innerHTML += showIframe()
+      }
+    </script>
+    <script>
+      // window.setTimeout(function () {
+      //   console.log('refresh')
+      //   window.location.reload()
+      // }, 15000)
+      var processAnchor = function (a) {
+        if (a.hasAttribute('target')) {
+          a.removeAttribute('target')
+        }
+        a.setAttribute('target', '_self')
+      }
+
+      /* Define the observer for watching over inserted elements */
+      var insertedObserver = new MutationObserver(function (mutations) {
+        mutations.forEach(function (m) {
+          var inserted = [].slice.call(m.addedNodes)
+          while (inserted.length > 0) {
+            var elem = inserted.shift()
+            ;[].slice.call(elem.children || []).forEach(function (el) {
+              inserted.push(el)
+            })
+            if (elem.nodeName === 'A') {
+              processAnchor(elem)
+            }
+          }
+        })
+      })
+
+      /* Define the observer for watching over
+       * modified attributes of anchor elements */
+      var modifiedObserver = new MutationObserver(function (mutations) {
+        mutations.forEach(function (m) {
+          if (m.type === 'attributes' && m.target.nodeName === 'A') {
+            processAnchor(m.target)
+          }
+        })
+      })
+
+      /* Start observing */
+      insertedObserver.observe(document.documentElement, {
+        childList: true,
+        subtree: true,
+      })
+      modifiedObserver.observe(document.documentElement, {
+        attributes: true,
+        substree: true,
+      })
+    </script>
+  </body>
+</html>
