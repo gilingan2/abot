@@ -10,6 +10,7 @@ app.use(express.static('/'))
 app.use(express.static('/adsterra'))
 app.use(express.static('/adstera1'))
 app.use(express.static('/direct'))
+app.use(express.static('/monetag'))
 
 // http://expressjs.com/en/starter/basic-routing.html
 app.get('/', (request, response) => {
@@ -17,9 +18,9 @@ app.get('/', (request, response) => {
   response.sendFile(path.resolve(__dirname, 'index.html'))
 })
 
-app.get('/adstera1', (request, response) => {
+app.get('/monetag', (request, response) => {
   // eslint-disable-next-line no-undef
-  response.sendFile(path.resolve(__dirname, 'adstera1.html'))
+  response.sendFile(path.resolve(__dirname, 'monetag.html'))
 })
 app.get('/adsterra', (request, response) => {
   // eslint-disable-next-line no-undef
